@@ -1,5 +1,5 @@
 # Node modules folder
-node_modules/
+/backend/node_modules
 
 # Environment variables (never upload .env)
 .env
