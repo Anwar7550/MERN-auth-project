@@ -1,0 +1,23 @@
+# Node modules folder
+node_modules/
+
+# Environment variables (never upload .env)
+.env
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs
+*.log
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.swp
+
+# Coverage / test output
+coverage/
