@@ -43,7 +43,7 @@ const Login = () => {
         localStorage.setItem("Token", jwtToken);
         localStorage.setItem("LoggedInUser", name);
         setTimeout(() => {
-          navigate("/home");
+          navigate("https://mern-auth-project-f4as.vercel.app/home");
         }, 1000);
       } else if (error) {
         const details = error?.details[0].message;
