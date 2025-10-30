@@ -29,7 +29,7 @@ const Signup = () => {
       return handleError("name, email, password are required!");
     }
     try {
-      const url = "https://mern-auth-project-f4as.vercel.app/auth/signup";
+      const url = "https://mern-auth-project-zeta.vercel.app/auth/signup";
       const response = await fetch(url, {
         method: "POST",
         headers: {
