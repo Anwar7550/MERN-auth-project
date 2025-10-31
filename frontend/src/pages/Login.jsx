@@ -28,8 +28,7 @@ const Login = () => {
       return handleError("email or password are required!");
     }
     try {
-      const url =
-        "https://mern-auth-project-ldx3adnhg-anwar-kamals-projects.vercel.app/auth/login";
+      const url = "https://mern-auth-project-zeta.vercel.app/auth/login";
       const response = await fetch(url, {
         method: "POST",
         headers: {

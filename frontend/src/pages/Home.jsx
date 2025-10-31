@@ -19,8 +19,7 @@ const Home = () => {
   };
   const fetchProducts = async () => {
     try {
-      const url =
-        "https://mern-auth-project-ldx3adnhg-anwar-kamals-projects.vercel.app/auth/product";
+      const url = "https://mern-auth-project-zeta.vercel.app/auth/product";
       const headers = {
         headers: { Authorization: localStorage.getItem("Token") },
       };
