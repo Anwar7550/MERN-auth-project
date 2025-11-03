@@ -10,13 +10,14 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://mern-auth-project-mu.vercel.app/",
+    methods: ["POST"],
+    credentials: true,
+  })
+);
 
-// {
-//     origin: "url",
-//     methods: ["POST"],
-//     credentials: true,
-//   }
 app.use(express.json());
 app.use(bodyParser.json());
 
@@ -29,17 +30,17 @@ app.get("/", (req, res) => {
 app.use(`/auth`, authRouter);
 app.use(`/auth/product`, routerProduct);
 
-// ConnectDB();
+ConnectDB();
 
-ConnectDB()
-  .then(() => {
-    app.listen(Port, () => {
-      console.log(`Server is running on port http://localhost:${Port}`);
-    });
-  })
-  .catch((error) => {
-    console.error("Failed to connect DB", error);
-    process.exit(1);
-  });
+// ConnectDB()
+//   .then(() => {
+//     app.listen(Port, () => {
+//       console.log(`Server is running on port http://localhost:${Port}`);
+//     });
+//   })
+//   .catch((error) => {
+//     console.error("Failed to connect DB", error);
+//     process.exit(1);
+//   });
 
 export default app;
