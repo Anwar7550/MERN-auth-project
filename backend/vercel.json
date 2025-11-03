@@ -4,7 +4,7 @@
     {
       "src": "server.js",
       "use": "@vercel/node",
-      "config": { "includeFiles": ["dist/**"] }
+      "config": { "includeFiles": ["dist/**"], "maxDuration": 30 }
     }
   ],
   "routes": [{ "src": "/(.*)", "dest": "server.js" }]
