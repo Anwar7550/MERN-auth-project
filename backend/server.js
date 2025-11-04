@@ -21,7 +21,7 @@ app.use(
 app.use(express.json());
 app.use(bodyParser.json());
 
-const Port = process.env.PORT;
+// const Port = process.env.PORT;
 
 app.get("/", (req, res) => {
   res.send(`Server is running .... `);
@@ -30,7 +30,10 @@ app.get("/", (req, res) => {
 app.use(`/auth`, authRouter);
 app.use(`/auth/product`, routerProduct);
 
-ConnectDB();
+export default async (req, res) => {
+  await ConnectDB();
+  return app(req, res);
+};
 
 // ConnectDB()
 //   .then(() => {
@@ -43,4 +46,4 @@ ConnectDB();
 //     process.exit(1);
 //   });
 
-export default app;
+// export default app;
