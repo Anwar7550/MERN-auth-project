@@ -30,17 +30,17 @@ app.get("/", (req, res) => {
 app.use(`/auth`, authRouter);
 app.use(`/auth/product`, routerProduct);
 
-// ConnectDB();
+ConnectDB();
 
-ConnectDB()
-  .then(() => {
-    app.listen(Port, () => {
-      console.log(`Server is running on port http://localhost:${Port}`);
-    });
-  })
-  .catch((error) => {
-    console.error("Failed to connect DB", error);
-    process.exit(1);
-  });
+// ConnectDB()
+//   .then(() => {
+//     app.listen(Port, () => {
+//       console.log(`Server is running on port http://localhost:${Port}`);
+//     });
+//   })
+//   .catch((error) => {
+//     console.error("Failed to connect DB", error);
+//     process.exit(1);
+//   });
 
 export default app;
