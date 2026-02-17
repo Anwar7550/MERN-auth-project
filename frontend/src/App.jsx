@@ -5,6 +5,7 @@ import Signup from "./pages/Signup.jsx";
 import Login from "./pages/Login.jsx";
 import { useState } from "react";
 import RefreshHandler from "./RefreshHandler.js";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -15,6 +16,7 @@ function App() {
   return (
     <>
       <RefreshHandler setIsAuthenticated={setIsAuthenticated} />
+      <ToastContainer position="top-center" autoClose="3000" />
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/home" element={<PrivateRoute element={<Home />} />} />

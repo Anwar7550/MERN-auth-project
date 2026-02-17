@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import "./Signup.css";
-import { handleError, handleSuccess } from "../util/util.js";
+import { toast } from "react-toastify";
 
 const Signup = () => {
   const [signupInfo, setSignupInfo] = useState({
@@ -20,13 +18,12 @@ const Signup = () => {
     copySignupInfo[name] = value;
     setSignupInfo(copySignupInfo);
   };
-  // console.log("loginInfo :", signupInfo);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { name, email, password } = signupInfo;
     if (!name || !email || !password) {
-      return handleError("name, email, password are required!");
+      return toast.error("name, email, password are required!");
     }
     try {
       const url = "https://mern-auth-project-backend.vercel.app/auth/signup";
@@ -40,19 +37,19 @@ const Signup = () => {
       const result = await response.json();
       const { success, message, error } = result;
       if (success) {
-        handleSuccess(message);
+        toast.success(message);
         setTimeout(() => {
           navigate("/login");
         }, 1000);
       } else if (error) {
         const details = error?.details[0].message;
-        handleError(details);
+        toast.error(details);
       } else if (!success) {
-        handleError(message);
+        toast.error(message);
       }
       console.log(result);
     } catch (err) {
-      handleError(err);
+      toast.error(err);
     }
   };
 

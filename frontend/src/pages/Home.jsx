@@ -1,18 +1,21 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { handleError, handleSuccess } from "../util/util";
-import { ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
+
 const Home = () => {
   const [loggedinUser, setLoggedinUser] = useState("");
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
+
   useEffect(() => {
     setLoggedinUser(localStorage.getItem("LoggedInUser"));
   }, []);
+
   const handleLogOut = () => {
     localStorage.removeItem("Token");
     localStorage.removeItem("LoggedInUser");
-    handleSuccess("User Log out successfully");
+    toast.success("User Log out successfully");
+
     setTimeout(() => {
       navigate("/login");
     }, 1000);
@@ -25,10 +28,9 @@ const Home = () => {
       };
       const response = await fetch(url, headers);
       const result = await response.json();
-      // console.log(result);
       setProducts(result);
     } catch (error) {
-      handleError(error);
+      toast.error(error);
     }
   };
   useEffect(() => {
@@ -60,7 +62,6 @@ const Home = () => {
             </ul>
           ))}
       </div>
-      <ToastContainer />
     </section>
   );
 };

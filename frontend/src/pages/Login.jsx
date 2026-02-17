@@ -1,31 +1,26 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import "./Signup.css";
-import { handleError, handleSuccess } from "../util/util.js";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [loginInfo, setLoginInfo] = useState({
     email: "",
     password: "",
   });
-
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    // console.log(name, value);
     const copyLoginInfo = { ...loginInfo };
     copyLoginInfo[name] = value;
     setLoginInfo(copyLoginInfo);
   };
-  // console.log("loginInfo :", loginInfo);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     const { email, password } = loginInfo;
     if (!email || !password) {
-      return handleError("email or password are required!");
+      return toast.error("email or password are required!");
     }
     try {
       const url = "https://mern-auth-project-backend.vercel.app/auth/login";
@@ -38,8 +33,9 @@ const Login = () => {
       });
       const result = await response.json();
       const { success, message, jwtToken, name, error } = result;
+
       if (success) {
-        handleSuccess(message);
+        toast.success(message);
         localStorage.setItem("Token", jwtToken);
         localStorage.setItem("LoggedInUser", name);
         setTimeout(() => {
@@ -47,13 +43,13 @@ const Login = () => {
         }, 1000);
       } else if (error) {
         const details = error?.details[0].message;
-        handleError(details);
+        toast.error(details);
       } else if (!success) {
-        handleError(message);
+        toast.error(message);
       }
       console.log(result);
     } catch (err) {
-      handleError(err);
+      toast.error(err);
     }
   };
 
@@ -89,7 +85,6 @@ const Login = () => {
           </Link>
         </span>
       </form>
-      <ToastContainer />
     </section>
   );
 };
