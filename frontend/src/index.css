@@ -39,7 +39,7 @@ body {
   color: #081f5c;
 }
 
-.container>form {
+.container > form {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -90,7 +90,6 @@ button:hover {
   background-color: white;
   color: #081f5c;
   border: 2px solid #081f5c;
-  animation: zoomIn 0.5s ease-in-out;
 }
 
 .container span {
@@ -115,7 +114,6 @@ button:hover {
 span .link:hover {
   background-color: #081f5c;
   color: white;
-  animation: zoomIn 0.5s ease-in-out;
 }
 
 @keyframes zoomIn {
